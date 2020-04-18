@@ -1,7 +1,7 @@
 import {FETCH_DATA, DATA_SUCCESS, DATA_ERROR, POST_DATA, POST_SUCCESS, POST_ERROR} from '../actions/actions';
 
 const initialState = {
-    smurfs: [],
+    smurfs:[],
     error: '',
     isLoading: false
     

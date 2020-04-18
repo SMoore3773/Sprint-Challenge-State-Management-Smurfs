@@ -7,4 +7,19 @@ export const POST_DATA = 'POST_DATA';
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const POST_ERROR = 'POST_ERROR';
 
-
+export const fetchData = () => dispatch => {
+    dispatch({
+        type: FETCH_DATA
+    });
+    axios
+        .get('http://localhost:3333/smurfs')
+        .then(res=>{
+            console.log('result in api request',res);
+            const smurfs = res.data;
+            dispatch({type: DATA_SUCCESS, payload: smurfs});
+        })
+        .catch(err=>{
+            console.log('error: ', err)
+            dispatch({ type: DATA_ERROR, payload: err});
+        })
+}
