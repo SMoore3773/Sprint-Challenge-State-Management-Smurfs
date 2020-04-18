@@ -23,3 +23,21 @@ export const fetchData = () => dispatch => {
             dispatch({ type: DATA_ERROR, payload: err});
         })
 }
+
+export const postData = (newSmurf) => dispatch => {
+    console.log('newSmurf in post', newSmurf)
+    dispatch({
+        type: POST_DATA, payload:newSmurf
+    });
+    axios
+        .post('http://localhost:3333/smurfs/',newSmurf)
+        .then(res=>{
+            console.log('post in api post',res);
+            const newSmurf = res.data;
+            dispatch({type: POST_SUCCESS, payload: newSmurf});
+        })
+        .catch(err=>{
+            console.log('error: ', err)
+            dispatch({ type: POST_ERROR, payload: err});
+        })
+}

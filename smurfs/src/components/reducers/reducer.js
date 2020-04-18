@@ -3,7 +3,8 @@ import {FETCH_DATA, DATA_SUCCESS, DATA_ERROR, POST_DATA, POST_SUCCESS, POST_ERRO
 const initialState = {
     smurfs:[],
     error: '',
-    isLoading: false
+    isLoading: false,
+    newSmurf:{}
     
 }
 
@@ -21,6 +22,23 @@ export const rootReducer = (state = initialState, action) => {
                 isLoading: false
             }
         case DATA_ERROR:
+            return{
+                ...state,
+                error: action.payload
+            }
+        case POST_DATA:
+            console.log('action.payload in post data', action.payload)
+            return{
+                ...state,
+                newSmurf:action.payload
+            }
+        case POST_SUCCESS:
+            console.log('smurfs in post success', state.smurfs)
+            return{
+                ...state,
+                smurfs: action.payload
+            }
+        case POST_ERROR:
             return{
                 ...state,
                 error: action.payload
